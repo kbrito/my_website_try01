@@ -46,9 +46,7 @@ function cities(){
         var rowHtml = "<tr><td>" + cityPop[i].city + "</td><td>" +
         cityPop[i].population + "</td></tr>";
         //add the row's html string to the table
-        $("table").append(rowHtml);
-
-        
+        $("table").append(rowHtml);        
     };
 
     // call the 'addColumns' function to complete table
@@ -84,9 +82,6 @@ function addColumns(cityPop){
             // Add new column to table
             $(this).append('<th>City Size</th>');
 
-            // Add to 'i' variable to iterate through array object
-            i++;
-
         } else {
 
                 // declare variable for new column 
@@ -105,49 +100,45 @@ function addColumns(cityPop){
                     citySize = 'Large';
                 };
 
-                // Test statement 
-                //console.log(cityPop);
-
                 // Add variable 'City Size' to the table 
-                $(this).append('<td>' + citySize + '</td>');
+                $(this).append('<td>' + citySize + '</td>');             
 
-                
-
-        };
-
-        // Add to 'i' variable to iterate through array object 
-        i++;      
-
+        };     
     });
 };
 
 /* This function provides instructions for event-driven
-methods to 
+methods to promote #interactivity 
 */
 
 function addEvents(){
 
+    // This event function produces different colors when
+    // user mouses over table
+
     $("table").mouseover(function(){
         
+        // Color variable that hold a random RGB value 
         var color = "rgb(";
 
         for (var i=0; i<3; i++){
 
+            // Generate RGB code for ramdom color
             var random = Math.round(Math.random() * 255);
 
             color += random;
 
+            // Allows for rgb code to fill and end
             if (i<2){
                 color += ",";
             
             } else {
                 color += ")";
-        };        
+            };        
            
-            // Test statement 
-            // console.log(color);
         };
 
+        // Put the random color into the css for the table
         $(this).css('color', color);
     });
 
@@ -160,13 +151,10 @@ function addEvents(){
         alert('Hey, you clicked me!');
     };
 
+    // Activate clickme function
     $('table').on('click', clickme);
-    $( 'table' ).on( "mouseover", function() {
-
-    });
 
 };
-
 
 //call the initialize function when the window has loaded
 $(document).ready(initialize);
