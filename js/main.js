@@ -6,6 +6,7 @@
 //initialize function called when the script loads
 function initialize(){
     cities();
+    debugAjax();
     
 };
 
@@ -155,6 +156,46 @@ function addEvents(){
     $('table').on('click', clickme);
 
 };
+
+
+/* 
+*** Module 03 code
+*** This is the debug code block of the AJAX reference methods
+*/
+
+// This is the callback function that allows the DOM to upload
+// data into the web browser
+
+function debugCallback(response){
+    
+    $(mydiv).append('GeoJSON data: ' + JSON.stringify(response));
+};
+
+
+// This allows for the AJAX function to refer to the data
+function debugAjax(){
+    
+    var mydata;
+
+    $.ajax("data/MegaCities.geojson", {
+        dataType: "json",
+        success: function(response){
+            mydata = response;
+            debugCallback(mydata);
+            // Can access data 
+            console.log(mydata); 
+        }
+    });
+
+    // Unable to access data
+    console.log(mydata);
+    $(mydiv).append('<br>GeoJSON data:<br>' + JSON.stringify(mydata));
+};
+
+// Not neccessary
+// $(mydiv).append('GeoJSON data: ' + JSON.stringify(mydata));
+
+
 
 //call the initialize function when the window has loaded
 $(document).ready(initialize);
