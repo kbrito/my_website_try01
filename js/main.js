@@ -168,6 +168,8 @@ function addEvents(){
 
 function debugCallback(response){
     
+    // this calls the json file to the mydiv element and
+    // displays it in the main screen
     $(mydiv).append('GeoJSON data: ' + JSON.stringify(response));
 };
 
@@ -180,14 +182,20 @@ function debugAjax(){
     $.ajax("data/MegaCities.geojson", {
         dataType: "json",
         success: function(response){
+
+            // reassign argument variable to local 'mydata' variable
             mydata = response;
+
+            // use callback function to get data for display from json file
             debugCallback(mydata);
-            // Can access data 
+
+            // Can access data at this point!
             console.log(mydata); 
         }
     });
 
     // Unable to access data
+    // Data has not been accessed by the callback function
     console.log(mydata);
     $(mydiv).append('<br>GeoJSON data:<br>' + JSON.stringify(mydata));
 };
